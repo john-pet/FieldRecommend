@@ -116,7 +116,34 @@
                             Console.Clear();
                             break;
                         case 3:
-                            string[] filePath = 
+                            if (displayRecommend == 0)
+                            {
+                                running = false; // Exit the loop and end the program
+                                try
+                                {
+                                    File.Delete($"C:\\Users\\Dell\\source\\repos\\FieldRecommend\\Project Proposal Modified\\FieldCompass_AcademicFieldRecommendationSystem\\InterestsAnswersOne.json");
+                                    File.Delete($"C:\\Users\\Dell\\source\\repos\\FieldRecommend\\Project Proposal Modified\\FieldCompass_AcademicFieldRecommendationSystem\\InterestsAnswersTwo.json");
+                                    File.Delete($"C:\\Users\\Dell\\source\\repos\\FieldRecommend\\Project Proposal Modified\\FieldCompass_AcademicFieldRecommendationSystem\\PassionsAnswersOne.json");
+                                    File.Delete($"C:\\Users\\Dell\\source\\repos\\FieldRecommend\\Project Proposal Modified\\FieldCompass_AcademicFieldRecommendationSystem\\SkillsStrengthsAnswersOne.json");
+                                    File.Delete($"C:\\Users\\Dell\\source\\repos\\FieldRecommend\\Project Proposal Modified\\FieldCompass_AcademicFieldRecommendationSystem\\SkillsStrengthsAnswersTwo.json");
+                                    File.Delete($"C:\\Users\\Dell\\source\\repos\\FieldRecommend\\Project Proposal Modified\\FieldCompass_AcademicFieldRecommendationSystem\\SkillsStrengthsAnswersThree.json");
+                                }
+                                catch (FileNotFoundException ex)
+                                {
+                                    Console.WriteLine(ex + "Files not Found");
+                                    Console.ReadLine();
+                                }
+                                catch (Exception ex)
+                                {
+                                    Console.WriteLine($"An error occurred while deleting the files: {ex.Message}");
+                                    Console.ReadLine();
+                                }
+
+                                break;
+                            }
+                            else
+                            {
+                                string[] filePath =
                             {
                                 $"C:\\Users\\Dell\\source\\repos\\FieldRecommend\\Project Proposal Modified\\FieldCompass_AcademicFieldRecommendationSystem\\InterestsAnswersOne.json",
                                 $"C:\\Users\\Dell\\source\\repos\\FieldRecommend\\Project Proposal Modified\\FieldCompass_AcademicFieldRecommendationSystem\\InterestsAnswersTwo.json",
@@ -125,30 +152,31 @@
                                 $"C:\\Users\\Dell\\source\\repos\\FieldRecommend\\Project Proposal Modified\\FieldCompass_AcademicFieldRecommendationSystem\\SkillsStrengthsAnswersTwo.json",
                                 $"C:\\Users\\Dell\\source\\repos\\FieldRecommend\\Project Proposal Modified\\FieldCompass_AcademicFieldRecommendationSystem\\SkillsStrengthsAnswersThree.json",
                             };
-                            
-                            foreach(string fileLink in filePath)
-                            {
-                                try
-                                {
-                                    using (StreamReader reader = File.OpenText(fileLink))
-                                    {
-                                        string line;
-                                        while ((line = reader.ReadLine()) != null)
-                                        {
-                                            Console.WriteLine(line);
-                                        }
-                                    }
 
-                                }
-                                catch (Exception ex)
+                                foreach (string fileLink in filePath)
                                 {
-                                    Console.WriteLine("Failed to read the file.");
+                                    try
+                                    {
+                                        using (StreamReader reader = File.OpenText(fileLink))
+                                        {
+                                            string line;
+                                            while ((line = reader.ReadLine()) != null)
+                                            {
+                                                Console.WriteLine(line);
+                                            }
+                                        }
+
+                                    }
+                                    catch (Exception ex)
+                                    {
+                                        Console.WriteLine("Failed to read the file.");
+                                    }
+                                    Console.WriteLine();
                                 }
-                                Console.WriteLine();
+                                Console.WriteLine("\nPress any key to continue...");
+                                Console.ReadKey();
+                                break;
                             }
-                            Console.WriteLine("\nPress any key to continue...");
-                            Console.ReadKey();
-                            break;
                         case 4:
                             // Instantiating an object of class CourseDatabase
                             CourseDatabase courseDatabase = new CourseDatabase();
