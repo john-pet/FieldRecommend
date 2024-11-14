@@ -1,7 +1,8 @@
 ﻿namespace FieldCompass_AcademicFieldRecommendationSystem
 {
-    public abstract class Question
+    public abstract class Question : FileHandling
     {
+        static int visitIndicator = 0;
         public List<int> AskQuestions(int count)
         {
             List<int> answers = new List<int>();
@@ -54,7 +55,6 @@
 
         internal static List<int> SelectedOptions(string category, List<string> options)
         {
-            char confirmation;
             string input = Console.ReadLine(); //this is where your input like 1,2,3 gets stored as a string
             List<int> selectedOptions = new List<int>();
 
@@ -76,32 +76,12 @@
                 }
             }
 
-            string filePath = $"C:\\Users\\Dell\\source\\repos\\FieldRecommend\\Project Proposal Modified\\FieldCompass_AcademicFieldRecommendationSystem\\{category}.json";
+            if(visitIndicator == 0)
+                CreateFile(category, selectedOptions, options);
+            else
+                UpdateFile(category, selectedOptions, options);
 
-            Console.WriteLine("\nChoices: ");
-            try
-            {
-                /* I like the using statement because it ensures that the files are closed and the resources properly disposed, 
-                   after the execution is done
-                */
-                using (StreamWriter writer = new StreamWriter(filePath))
-                {
-                    foreach (int num in selectedOptions)
-                    {
-                        string optionText = $"{num} - {options[num - 1]}";
-                        Console.WriteLine(optionText);
-
-                        // Write each option to the file
-                        writer.WriteLine(optionText);
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine("Failed to create the file" + ex);
-            }
-            
-            
+            visitIndicator ++;
             return selectedOptions;
         }
     }

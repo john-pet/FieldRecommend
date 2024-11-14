@@ -4,8 +4,9 @@ namespace FieldCompass_AcademicFieldRecommendationSystem
 {
     internal class CourseDatabase
     {
-        // Path to the JSON file containing course details 
-        private const string FilePath = "C:\\Users\\Dell\\source\\repos\\FieldRecommend\\Project Proposal Modified\\FieldCompass_AcademicFieldRecommendationSystem\\CourseDatabase.json";
+        // Path to the JSON file containing course details
+        static readonly string FilePath = Path.GetFullPath(Path.Combine(Directory.GetCurrentDirectory(), @"..\..\..\Answers\CourseDatabase.json"));
+        // Path to the JSON file containing course details
 
         // This method returns a list of Course objects read from a JSON file
         internal List<Course> InitializeCourseDatabase()

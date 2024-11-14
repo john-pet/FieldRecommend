@@ -1,6 +1,6 @@
 ﻿namespace FieldCompass_AcademicFieldRecommendationSystem
 {
-    internal class Program
+    internal class Program : FileHandling
     {
         static void Main(string[] args)
         {
@@ -119,60 +119,13 @@
                             if (displayRecommend == 0)
                             {
                                 running = false; // Exit the loop and end the program
-                                try
-                                {
-                                    File.Delete($"C:\\Users\\Dell\\source\\repos\\FieldRecommend\\Project Proposal Modified\\FieldCompass_AcademicFieldRecommendationSystem\\InterestsAnswersOne.json");
-                                    File.Delete($"C:\\Users\\Dell\\source\\repos\\FieldRecommend\\Project Proposal Modified\\FieldCompass_AcademicFieldRecommendationSystem\\InterestsAnswersTwo.json");
-                                    File.Delete($"C:\\Users\\Dell\\source\\repos\\FieldRecommend\\Project Proposal Modified\\FieldCompass_AcademicFieldRecommendationSystem\\PassionsAnswersOne.json");
-                                    File.Delete($"C:\\Users\\Dell\\source\\repos\\FieldRecommend\\Project Proposal Modified\\FieldCompass_AcademicFieldRecommendationSystem\\SkillsStrengthsAnswersOne.json");
-                                    File.Delete($"C:\\Users\\Dell\\source\\repos\\FieldRecommend\\Project Proposal Modified\\FieldCompass_AcademicFieldRecommendationSystem\\SkillsStrengthsAnswersTwo.json");
-                                    File.Delete($"C:\\Users\\Dell\\source\\repos\\FieldRecommend\\Project Proposal Modified\\FieldCompass_AcademicFieldRecommendationSystem\\SkillsStrengthsAnswersThree.json");
-                                }
-                                catch (FileNotFoundException ex)
-                                {
-                                    Console.WriteLine(ex + "Files not Found");
-                                    Console.ReadLine();
-                                }
-                                catch (Exception ex)
-                                {
-                                    Console.WriteLine($"An error occurred while deleting the files: {ex.Message}");
-                                    Console.ReadLine();
-                                }
+                                DeleteFile();
 
                                 break;
                             }
                             else
                             {
-                                string[] filePath =
-                            {
-                                $"C:\\Users\\Dell\\source\\repos\\FieldRecommend\\Project Proposal Modified\\FieldCompass_AcademicFieldRecommendationSystem\\InterestsAnswersOne.json",
-                                $"C:\\Users\\Dell\\source\\repos\\FieldRecommend\\Project Proposal Modified\\FieldCompass_AcademicFieldRecommendationSystem\\InterestsAnswersTwo.json",
-                                $"C:\\Users\\Dell\\source\\repos\\FieldRecommend\\Project Proposal Modified\\FieldCompass_AcademicFieldRecommendationSystem\\PassionsAnswersOne.json",
-                                $"C:\\Users\\Dell\\source\\repos\\FieldRecommend\\Project Proposal Modified\\FieldCompass_AcademicFieldRecommendationSystem\\SkillsStrengthsAnswersOne.json",
-                                $"C:\\Users\\Dell\\source\\repos\\FieldRecommend\\Project Proposal Modified\\FieldCompass_AcademicFieldRecommendationSystem\\SkillsStrengthsAnswersTwo.json",
-                                $"C:\\Users\\Dell\\source\\repos\\FieldRecommend\\Project Proposal Modified\\FieldCompass_AcademicFieldRecommendationSystem\\SkillsStrengthsAnswersThree.json",
-                            };
-
-                                foreach (string fileLink in filePath)
-                                {
-                                    try
-                                    {
-                                        using (StreamReader reader = File.OpenText(fileLink))
-                                        {
-                                            string line;
-                                            while ((line = reader.ReadLine()) != null)
-                                            {
-                                                Console.WriteLine(line);
-                                            }
-                                        }
-
-                                    }
-                                    catch (Exception ex)
-                                    {
-                                        Console.WriteLine("Failed to read the file.");
-                                    }
-                                    Console.WriteLine();
-                                }
+                                ReadFile();
                                 Console.WriteLine("\nPress any key to continue...");
                                 Console.ReadKey();
                                 break;
@@ -192,25 +145,7 @@
                             break;
                         case 5:
                             running = false; // Exit the loop and end the program
-                            try
-                            {
-                                File.Delete($"C:\\Users\\Dell\\source\\repos\\FieldRecommend\\Project Proposal Modified\\FieldCompass_AcademicFieldRecommendationSystem\\InterestsAnswersOne.json");
-                                File.Delete($"C:\\Users\\Dell\\source\\repos\\FieldRecommend\\Project Proposal Modified\\FieldCompass_AcademicFieldRecommendationSystem\\InterestsAnswersTwo.json");
-                                File.Delete($"C:\\Users\\Dell\\source\\repos\\FieldRecommend\\Project Proposal Modified\\FieldCompass_AcademicFieldRecommendationSystem\\PassionsAnswersOne.json");
-                                File.Delete($"C:\\Users\\Dell\\source\\repos\\FieldRecommend\\Project Proposal Modified\\FieldCompass_AcademicFieldRecommendationSystem\\SkillsStrengthsAnswersOne.json");
-                                File.Delete($"C:\\Users\\Dell\\source\\repos\\FieldRecommend\\Project Proposal Modified\\FieldCompass_AcademicFieldRecommendationSystem\\SkillsStrengthsAnswersTwo.json");
-                                File.Delete($"C:\\Users\\Dell\\source\\repos\\FieldRecommend\\Project Proposal Modified\\FieldCompass_AcademicFieldRecommendationSystem\\SkillsStrengthsAnswersThree.json");
-                            }
-                            catch (FileNotFoundException ex)
-                            {
-                                Console.WriteLine(ex + "Files not Found");
-                                Console.ReadLine();
-                            }
-                            catch (Exception ex)
-                            {
-                                Console.WriteLine($"An error occurred while deleting the files: {ex.Message}");
-                                Console.ReadLine();
-                            }
+                            DeleteFile();
                         
                             break;
                     }
